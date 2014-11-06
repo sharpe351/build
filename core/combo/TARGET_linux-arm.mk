@@ -67,17 +67,17 @@ $(combo_2nd_arch_prefix)TARGET_STRIP := $($(combo_2nd_arch_prefix)TARGET_TOOLS_P
 
 $(combo_2nd_arch_prefix)TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
-$(combo_2nd_arch_prefix)TARGET_arm_CFLAGS :=    -O3 \
-                        -pipe \
+$(combo_2nd_arch_prefix)TARGET_arm_CFLAGS :=  -O3 \
+			-pipe \
 			-DNDEBUG \
-                        -fomit-frame-pointer \
-                        -fstrict-aliasing    \
-                        -funswitch-loops \
-                        -fno-tree-vectorize \
-                        -fno-inline-functions \
-                        -fgcse-after-reload \
-                        -fno-ipa-cp-clone \
-                        -fno-vect-cost-model \
+			-fomit-frame-pointer \
+			-fstrict-aliasing    \
+			-funswitch-loops \
+			-fno-tree-vectorize \
+			-fno-inline-functions \
+			-fgcse-after-reload \
+			-fno-ipa-cp-clone \
+			-fno-vect-cost-model \
 			-funsafe-loop-optimizations \
 			-fsection-anchors \
 			-fivopts \
@@ -92,20 +92,20 @@ $(combo_2nd_arch_prefix)TARGET_arm_CFLAGS :=    -O3 \
 			-fweb \
 			-ftracer \
 			-Wno-error=unused-parameter \
-                        -Wno-error=unused-but-set-variable \
+			-Wno-error=unused-but-set-variable \
 			-Wno-error=maybe-uninitialized \
-                        $(VANIR_ARM_FSTRICT_OPTIONS)
+			$(VANIR_ARM_FSTRICT_OPTIONS)
 
 # Modules can choose to compile some source as thumb.
 $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS :=  -mthumb \
-                        -O3 \
-                         -pipe \
-                        -fomit-frame-pointer \
-                        -fno-strict-aliasing \
-                        -fno-tree-vectorize \
-                        -fno-inline-functions \
-                        -fno-unswitch-loops \
-                        -fgcse-after-reload \
+			-O3 \
+			-pipe \
+			-fomit-frame-pointer \
+			-fno-strict-aliasing \
+			-fno-tree-vectorize \
+			-fno-inline-functions \
+			-fno-unswitch-loops \
+			-fgcse-after-reload \
 			-DNDEBUG \
 			-fivopts \
 			-fno-unroll-loops \
@@ -116,10 +116,11 @@ $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS :=  -mthumb \
 			-frerun-cse-after-loop \
 			-ftracer \
 			-Wno-error=maybe-uninitialized \
-                        -Wno-error=unused-parameter \
-                        -Wno-error=unused-but-set-variable \
-                        -Wno-error=clobbered \
-                        $(VANIR_FSTRICT_OPTIONS)
+			-Wno-error=unused-parameter \
+			-Wno-error=unused-but-set-variable \
+			-Wno-error=clobbered \
+			-Wno-error=strict-overflow \
+			$(VANIR_FSTRICT_OPTIONS)
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to force a full arm build, even for
@@ -138,7 +139,7 @@ endif
 android_config_h := $(call select-android-config-h,linux-arm)
 
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += \
-                        -pipe \
+			-pipe \
 			-msoft-float \
 			-ffunction-sections \
 			-fdata-sections \
@@ -190,7 +191,7 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 # More flags/options can be added here
 $(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := \
 			-DNDEBUG \'
-                        -pipe \
+			-pipe \
 			-g \
 			-Wstrict-aliasing=2 \
 			-fgcse-after-reload \
