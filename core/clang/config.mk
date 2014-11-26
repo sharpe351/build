@@ -53,6 +53,28 @@ CLANG_CONFIG_UNKNOWN_CFLAGS := \
   -Wno-maybe-uninitialized \
   -Wno-error=maybe-uninitialized \
   -fno-canonical-system-headers \
+  -mthumb-interwork \
+  -fgcse-after-reload \
+  -frerun-cse-after-loop \
+  -frename-registers \
+  -fno-align-jumps \
+  -fno-builtin-sin \
+  -fno-caller-saves \
+  -fno-early-inlining \
+  -fno-move-loop-invariants \
+  -fno-partial-inlining \
+  -fno-strict-volatile-bitfields \
+  -fno-tree-copy-prop \
+  -fno-tree-loop-optimize \
+  -funsafe-loop-optimizations \
+  -fno-vect-cost-model \
+  -fno-ipa-cp-clone \
+  -fsection-anchors \
+  -ftree-loop-im \
+  -ftree-loop-ivcanon \
+  -fgcse-sm \
+  -fgcse-las \
+  -fweb \
   $(GRAPHITE_FLAGS)
 
 # Clang flags for all host rules
