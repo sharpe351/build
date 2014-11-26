@@ -97,27 +97,8 @@ $(combo_2nd_arch_prefix)TARGET_arm_CFLAGS :=  -O3 \
 			$(VANIR_ARM_FSTRICT_OPTIONS)
 
 # Modules can choose to compile some source as thumb.
-$(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS :=  -mthumb \
-			-O3 \
-			-pipe \
-			-DNDEBUG \
-			-fomit-frame-pointer \
-			-fstrict-aliasing \
-			-fno-tree-vectorize \
-			-fno-inline-functions \
-			-fno-unswitch-loops \
-			-Wstrict-aliasing=3 \
-			-Werror=strict-aliasing \
-			-fivopts \
-			-ffunction-sections \
-			-fdata-sections \
-			-ftracer \
-			-Wno-error=maybe-uninitialized \
-			-Wno-error=unused-parameter \
-			-Wno-error=unused-but-set-variable \
-			-Wno-error=clobbered \
-			-Wno-error=strict-overflow \
-			$(VANIR_FSTRICT_OPTIONS)
+$(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS :=  -mthumb -O3 -pipe -DNDEBUG -fomit-frame-pointer -fstrict-aliasing -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -Wstrict-aliasing=3 -Werror=strict-aliasing -fivopts -ffunction-sections -fdata-sections -ftracer -Wno-error=maybe-uninitialized -Wno-error=unused-parameter -Wno-error=unused-but-set-variable -Wno-error=clobbered -Wno-error=strict-overflow $(VANIR_FSTRICT_OPTIONS)
+$(call cc-option,$(-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-frename-registers,-frerun-cse-after-loop,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast,-fgraphite,-floop-flatten,-floop-parallelize-all,-ftree-loop-linear,-floop-interchange,-floop-strip-mine,-floop-block))
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to force a full arm build, even for
