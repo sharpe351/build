@@ -144,8 +144,16 @@ ifeq ($(TARGET_ARCH),arm)
       endif
       ccache := $(strip $(wildcard $(ccache)))
     endif
-    ARM_CROSS_COMPILE:=CROSS_COMPILE="$(ccache) $(KERNEL_TOOLCHAIN)/$(KERNEL_TOOLCHAIN_PREFIX)"
-    ccache = 
+    ifneq ($(TARGET_GCC_VERSION_ARM),)
+      ifeq ($(HOST_OS),darwin)
+        ARM_CROSS_COMPILE:=CROSS_COMPILE="$(ccache) $(ANDROID_BUILD_TOP)/prebuilts/gcc/darwin-x86/arm/arm-eabi-$(TARGET_GCC_VERSION_ARM)/bin/$(KERNEL_TOOLCHAIN_PREFIX)"
+      else
+        ARM_CROSS_COMPILE:=CROSS_COMPILE="$(ccache) $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-eabi-$(TARGET_GCC_VERSION_ARM)/bin/$(KERNEL_TOOLCHAIN_PREFIX)"
+      endif
+    else
+      ARM_CROSS_COMPILE:=CROSS_COMPILE="$(ccache) $(KERNEL_TOOLCHAIN)/$(KERNEL_TOOLCHAIN_PREFIX)"
+    endif
+    ccache =
 endif
 
 ifeq ($(HOST_OS),darwin)
