@@ -19,6 +19,7 @@ LOCAL_DISABLE_STRICT := \
 	libc_tzcode \
 	libziparchive \
 	libdiskconfig \
+	libcrypto_static \
 	busybox \
 	libuclibcrpc \
 	libziparchive-host \
@@ -29,17 +30,21 @@ LOCAL_DISABLE_STRICT := \
 	libpdfium \
 	bluetooth.default \
 	logd \
+	llvm-tblgen \
 	mdnsd \
 	net_net_gyp \
 	libstagefright_webm \
 	libaudioflinger \
 	libmediaplayerservice \
+	libcompiler_rt \
 	libstagefright \
 	ping \
 	ping6 \
 	libdiskconfig \
 	libjavacore \
 	libfdlibm \
+	libfuse \
+	libbusybox \
 	libvariablespeed \
 	librtp_jni \
 	libwilhelm \
