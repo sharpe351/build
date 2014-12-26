@@ -129,6 +129,7 @@ $(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS :=  -mthumb \
 			-fweb \
 			-ftracer \
 			-Wno-error=maybe-uninitialized \
+			$(call-cc-cpp-option,-Qunused-arguments) \
                         $(VANIR_FSTRICT_OPTIONS)
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
