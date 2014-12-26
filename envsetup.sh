@@ -162,7 +162,7 @@ function setpaths()
             ;;
         x86_64) toolchaindir=x86/x86_64-linux-android-$targetgccversion/bin
             ;;
-        arm) toolchaindir=arm/arm-linux-androideabi-$targetgccversion/bin
+        arm) toolchaindir=arm/sabermod/bin
             ;;
         arm64) toolchaindir=aarch64/aarch64-linux-android-$targetgccversion/bin;
                toolchaindir2=arm/arm-linux-androideabi-$targetgccversion2/bin
@@ -186,7 +186,7 @@ function setpaths()
     case $ARCH in
         arm)
             # Legacy toolchain configuration used for ARM kernel compilation
-            toolchaindir=arm/arm-eabi-$targetgccversion/bin
+            toolchaindir=arm/sabermod/bin
             if [ -d "$gccprebuiltdir/$toolchaindir" ]; then
                  export ARM_EABI_TOOLCHAIN="$gccprebuiltdir/$toolchaindir"
                  ANDROID_KERNEL_TOOLCHAIN_PATH="$ARM_EABI_TOOLCHAIN":
@@ -1758,7 +1758,7 @@ DIR=$OUT
 	echo $CL_RST" Destroyed."
 	echo ""
 	return;
-	else 
+	else
 	echo ""
 	echo $CL_YLW" Already" $CL_RED" SMASHED it !!!" $CL_RST
 	echo ""
@@ -2069,7 +2069,7 @@ source $(gettop)/build/nukehawtness
 parse_git_dirty() {
  [ $(git status --porcelain 2> /dev/null | wc -l) -ne 0 ] && echo " \*"
 }
-parse_git_branch() {     
+parse_git_branch() {
  [ "$(parse_git_dirty)" = "" ] && echo -en "\033[1;32m" || echo -en "\033[1;31m"
  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/ (\1$(parse_git_dirty))/"
 }

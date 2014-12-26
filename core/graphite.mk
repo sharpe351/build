@@ -12,75 +12,60 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-LOCAL_DISABLE_STRICT := \
-	libc_bionic \
-	libc_dns \
-	libc_tzcode \
-	libziparchive \
-	busybox \
-	libuclibcrpc \
-	libziparchive-host \
-	libpdfiumcore \
-	libandroid_runtime \
-	libmedia \
-	libpdfiumcore \
+# Force disable some modules that are not compatible with graphite flags
+LOCAL_DISABLE_GRAPHITE := \
+	libunwind \
+	libFFTEm \
+	libicui18n \
+	libskia \
+	libvpx \
+	libmedia_jni \
+	libstagefright_mp3dec \
+	libart \
+	libstagefright_amrwbenc \
 	libpdfium \
-	bluetooth.default \
-	logd \
-	mdnsd \
-	net_net_gyp \
-	libstagefright_webm \
-	libaudioflinger \
-	libmediaplayerservice \
-	libstagefright \
-	ping \
-	ping6 \
-	libdiskconfig \
-	libjavacore \
-	libfdlibm \
-	libvariablespeed \
-	librtp_jni \
-	libwilhelm \
-	libdownmix \
-	libldnhncr \
-	libqcomvisualizer \
-	libvisualizer \
-	libstlport \
-	libutils \
-	libandroidfw \
-	dnsmasq \
-	static_busybox \
-	content_content_renderer_gyp \
-	third_party_WebKit_Source_modules_modules_gyp \
-	third_party_WebKit_Source_platform_blink_platform_gyp \
-	third_party_WebKit_Source_core_webcore_remaining_gyp \
-	third_party_angle_src_translator_lib_gyp \
-	third_party_WebKit_Source_core_webcore_generated_gyp
+	libpdfiumcore
 
-ifneq (1,$(words $(filter $(LOCAL_DISABLE_STRICT), $(LOCAL_MODULE))))
-ifndef LOCAL_CONLYFLAGS
+ifneq (1,$(words $(filter $(LOCAL_DISABLE_GRAPHITE), $(LOCAL_MODULE))))
+ifdef LOCAL_CONLYFLAGS
 LOCAL_CONLYFLAGS += \
-	-fstrict-aliasing \
-	$(call cc-option,-Wstrict-aliasing=3) \
-	-Werror=strict-aliasing
+	-fgraphite \
+	-floop-flatten \
+	-floop-parallelize-all \
+	-ftree-loop-linear \
+	-floop-interchange \
+	-floop-strip-mine \
+	-floop-block
 else
 LOCAL_CONLYFLAGS := \
-	-fstrict-aliasing \
-	$(call cc-option,-Wstrict-aliasing=3) \
-	-Werror=strict-aliasing
+	-fgraphite \
+	-floop-flatten \
+	-floop-parallelize-all \
+	-ftree-loop-linear \
+	-floop-interchange \
+	-floop-strip-mine \
+	-floop-block
 endif
 
 ifdef LOCAL_CPPFLAGS
 LOCAL_CPPFLAGS += \
-	-fstrict-aliasing \
-	$(call cpp-option,-Wstrict-aliasing=3) \
-	-Werror=strict-aliasing
+	-fgraphite \
+	-floop-flatten \
+	-floop-parallelize-all \
+	-ftree-loop-linear \
+	-floop-interchange \
+	-floop-strip-mine \
+	-floop-block
 else
 LOCAL_CPPFLAGS := \
-	-fstrict-aliasing \
-	$(call cpp-option,-Wstrict-aliasing=3) \
-	-Werror=strict-aliasing
+	-fgraphite \
+	-floop-flatten \
+	-floop-parallelize-all \
+	-ftree-loop-linear \
+	-floop-interchange \
+	-floop-strip-mine \
+	-floop-block
 endif
 endif
+
 #####
