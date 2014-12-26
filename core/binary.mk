@@ -123,7 +123,7 @@ endif
 # limitations under the License.
 #
 # Include custom gcc flags.  Seperate them so they can be easily managed.
-ifeq ($(GRAPHITE_OPTS),yes)
+ifeq ($(GRAPHITE_OPTS),true)
 ifndef LOCAL_IS_HOST_MODULE
 ifeq ($(LOCAL_CLANG),)
 include $(BUILD_SYSTEM)/graphite.mk
@@ -131,7 +131,7 @@ endif
 endif
 endif
 
-ifeq ($(STRICT_ALIASING),yes)
+ifeq ($(STRICT_ALIASING),true)
 include $(BUILD_SYSTEM)/strict.mk
 endif
 
