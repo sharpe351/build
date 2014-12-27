@@ -35,8 +35,8 @@
 MAXIMUM_OVERDRIVE           ?= true
 NO_DEBUG_SYMBOL_FLAGS       ?= true
 NO_DEBUG_FRAME_POINTERS     ?= true
-USE_GRAPHITE                ?=
-USE_FSTRICT_FLAGS           ?=
+USE_GRAPHITE                ?= true
+USE_FSTRICT_FLAGS           ?= true
 USE_BINARY_FLAGS            ?=
 USE_EXTRA_CLANG_FLAGS       ?= true
 ADDITIONAL_TARGET_ARM_OPT   ?= true
