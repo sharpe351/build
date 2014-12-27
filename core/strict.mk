@@ -24,6 +24,9 @@ LOCAL_DISABLE_STRICT := \
 	libziparchive \
 	libdiskconfig \
 	libcrypto_static \
+	libtwrpmtp \
+	libfusetwrp \
+	libguitwrp \
 	busybox \
 	libuclibcrpc \
 	libziparchive-host \
