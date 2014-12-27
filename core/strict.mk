@@ -67,26 +67,18 @@ LOCAL_DISABLE_STRICT := \
 ifneq (1,$(words $(filter $(LOCAL_DISABLE_STRICT), $(LOCAL_MODULE))))
 ifndef LOCAL_CONLYFLAGS
 LOCAL_CONLYFLAGS += \
-	-fstrict-aliasing \
-	$(call cc-option,-Wstrict-aliasing=3) \
-	-Werror=strict-aliasing
+    $(VANIR_FSTRICT_OPTIONS)
 else
 LOCAL_CONLYFLAGS := \
-	-fstrict-aliasing \
-	$(call cc-option,-Wstrict-aliasing=3) \
-	-Werror=strict-aliasing
+    $(VANIR_FSTRICT_OPTIONS)
 endif
 
 ifdef LOCAL_CPPFLAGS
 LOCAL_CPPFLAGS += \
-	-fstrict-aliasing \
-	$(call cpp-option,-Wstrict-aliasing=3) \
-	-Werror=strict-aliasing
+    $(VANIR_FSTRICT_OPTIONS)
 else
 LOCAL_CPPFLAGS := \
-	-fstrict-aliasing \
-	$(call cpp-option,-Wstrict-aliasing=3) \
-	-Werror=strict-aliasing
+    $(VANIR_FSTRICT_OPTIONS)
 endif
 endif
 #####
