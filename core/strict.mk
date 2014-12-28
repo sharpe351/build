@@ -71,6 +71,7 @@ LOCAL_DISABLE_STRICT := \
 	third_party_WebKit_Source_core_webcore_remaining_gyp \
 	third_party_angle_src_translator_lib_gyp \
 	camera.msm8084 \
+	lsof \
 	third_party_WebKit_Source_core_webcore_generated_gyp
 
 ifneq (1,$(words $(filter $(LOCAL_DISABLE_STRICT), $(LOCAL_MODULE))))

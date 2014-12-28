@@ -67,18 +67,20 @@ $(combo_2nd_arch_prefix)TARGET_STRIP := $($(combo_2nd_arch_prefix)TARGET_TOOLS_P
 
 $(combo_2nd_arch_prefix)TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
-$(combo_2nd_arch_prefix)TARGET_arm_CFLAGS :=    -O2 \
-                        -fomit-frame-pointer \
-                        -fstrict-aliasing    \
-                        -funswitch-loops \
-                        $(VANIR_TARGET_ARM_FLAGS)
+$(combo_2nd_arch_prefix)TARGET_arm_CFLAGS := \
+			-O2 \
+			-fomit-frame-pointer \
+			-fstrict-aliasing \
+			-funswitch-loops \
+			$(VANIR_TARGET_ARM_FLAGS)
 
 # Modules can choose to compile some source as thumb.
-$(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS :=  -mthumb \
-                        -Os \
-                        -fomit-frame-pointer \
-                        -fno-strict-aliasing \
-                        $(VANIR_TARGET_THUMB_FLAGS)
+$(combo_2nd_arch_prefix)TARGET_thumb_CFLAGS := \
+			-mthumb \
+			-Os \
+			-fomit-frame-pointer \
+			-fno-strict-aliasing \
+			$(VANIR_TARGET_THUMB_FLAGS)
 
 # Set FORCE_ARM_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to force a full arm build, even for
@@ -143,17 +145,18 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_LDFLAGS += \
 
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += -mthumb-interwork
 
-ifeq ($(ADDITIONAL_TARGET_ARM_OPT),true)
-$(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden -O3 -DNDEBUG -pipe -fivopts -ffunction-sections -fdata-sections -funswitch-loops -fomit-frame-pointer -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized $(call cpp-option,$(-fira-loop-pressure,-fforce-addr,-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast))
-else
-$(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
-endif
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_CPPFLAGS += \
+			-fvisibility-inlines-hidden \
+			$(VANIR_TARGET_GLOBAL_FLAGS)
 
-ifeq ($(ADDITIONAL_TARGET_THUMB_OPT),true)
-$(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := -O3 -DNDEBUG -pipe -g -frerun-cse-after-loop -frename-registers -fno-strict-aliasing -fivopts -ffunction-sections -fdata-sections -funswitch-loops -fomit-frame-pointer -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized $(call cc-option,$(-fira-loop-pressure,-fforce-addr,-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-fgcse-after-reload,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast))
-else
-$(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := -DNDEBUG -g -Wstrict-aliasing=2 -fgcse-after-reload -frerun-cse-after-loop -frename-registers
-endif
+$(combo_2nd_arch_prefix)TARGET_RELEASE_CFLAGS := \
+			-DNDEBUG \
+			-g \
+			-Wstrict-aliasing=2 \
+			-fgcse-after-reload \
+			-frerun-cse-after-loop \
+			-frename-registers \
+			$(VANIR_TARGET_RELEASE_FLAGS)
 
 libc_root := bionic/libc
 libm_root := bionic/libm

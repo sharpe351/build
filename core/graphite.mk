@@ -45,6 +45,8 @@ LOCAL_DISABLE_GRAPHITE := \
 	libFraunhoferAAC \
 	libcrypto_static \
 	libicuuc \
+	busybox \
+	lsof \
 	libstagefright_m4vh263enc \
 	libpdfiumcore
 

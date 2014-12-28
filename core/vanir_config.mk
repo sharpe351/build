@@ -32,17 +32,20 @@
 # FSTRICT_ALIASING_WARNING_LEVEL := 0-3 for what is considered an aliasing violation
 
 # SET GLOBAL CONFIGURATION HERE:
-USE_HOST_4_8                ?=
-USE_O3_OPTIMIZATIONS        ?= true
-MAXIMUM_OVERDRIVE           ?= true
-NO_DEBUG_SYMBOL_FLAGS       ?= true
-NO_DEBUG_FRAME_POINTERS     ?= true
-USE_GRAPHITE                ?= true
-USE_FSTRICT_FLAGS           ?= true
-USE_BINARY_FLAGS            ?=
-USE_EXTRA_CLANG_FLAGS       ?= true
-ADDITIONAL_TARGET_ARM_OPT   ?= true
-ADDITIONAL_TARGET_THUMB_OPT ?= true
+USE_HOST_4_8                   ?=
+USE_O3_OPTIMIZATIONS           ?= true
+MAXIMUM_OVERDRIVE              ?= true
+NO_DEBUG_SYMBOL_FLAGS          ?= true
+NO_DEBUG_FRAME_POINTERS        ?= true
+USE_GRAPHITE                   ?= true
+USE_FSTRICT_FLAGS              ?= true
+USE_BINARY_FLAGS               ?=
+USE_EXTRA_CLANG_FLAGS          ?= true
+ADDITIONAL_TARGET_ARM_OPT      ?= true
+ADDITIONAL_TARGET_THUMB_OPT    ?= true
+ADDITIONAL_TARGET_GLOBAL_OPT   ?= true
+ADDITIONAL_TARGET_RELEASE_OPT  ?= true
+USE_EXTRA_GLOBAL_FLAGS         ?= true
 FSTRICT_ALIASING_WARNING_LEVEL ?= 2
 
 ifeq ($(FSTRICT_ALIASING_WARNING_LEVEL),)
@@ -51,16 +54,19 @@ endif
 
 # Respect BONE_STOCK: strictly enforce AOSP defaults.
 ifeq ($(BONE_STOCK),true)
-  USE_HOST_4_8            :=
-  USE_O3_OPTIMIZATIONS    :=
-  MAXIUMUM_OVERDRIVE      :=
-  NO_DEBUG_SYMBOL_FLAGS   :=
-  USE_GRAPHITE            :=
-  USE_FSTRICT_FLAGS       :=
-  USE_BINARY_FLAGS        :=
-  USE_EXTRA_CLANG_FLAGS   :=
-  ADDITIONAL_TARGET_ARM_OPT   :=
-  ADDITIONAL_TARGET_THUMB_OPT :=
+  USE_HOST_4_8                   :=
+  USE_O3_OPTIMIZATIONS           :=
+  MAXIUMUM_OVERDRIVE             :=
+  NO_DEBUG_SYMBOL_FLAGS          :=
+  USE_GRAPHITE                   :=
+  USE_FSTRICT_FLAGS              :=
+  USE_BINARY_FLAGS               :=
+  USE_EXTRA_CLANG_FLAGS          :=
+  ADDITIONAL_TARGET_ARM_OPT      :=
+  ADDITIONAL_TARGET_THUMB_OPT    :=
+  ADDITIONAL_TARGET_GLOBAL_OPT   :=
+  ADDITIONAL_TARGET_RELEASE_OPT  :=
+  USE_EXTRA_GLOBAL_FLAGS         :=
 endif
 
 # DEBUGGING OPTIONS
@@ -93,13 +99,24 @@ endif
 
 # Additional GCC-specific arm cflags
 ifeq ($(ADDITIONAL_TARGET_ARM_OPT),true)
-    VANIR_TARGET_ARM_FLAGS := -ftree-vectorize -funsafe-loop-optimizations -O3 -DNDEBUG -pipe -fno-tree-vectorize -fno-inline-functions -fivopts -ffunction-sections -fdata-sections -frename-registers -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized $(call cc-option,$(-fira-loop-pressure,-fforce-addr,-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-fgcse-after-reload,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast))
+    VANIR_TARGET_ARM_FLAGS := -O3 -DNDEBUG -pipe -funswitch-loops -fno-tree-vectorize -fno-inline-functions -fivopts -ffunction-sections -fdata-sections -frename-registers -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized $(call cc-option,$(-fira-loop-pressure,-fforce-addr,-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-fgcse-after-reload,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast))
 endif
 
 # Additional GCC-specific thumb cflags
 ifeq ($(ADDITIONAL_TARGET_THUMB_OPT),true)
-    VANIR_TARGET_THUMB_FLAGS := -funsafe-math-optimizations -mthumb -DNDEBUG -pipe -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -fivopts -ffunction-sections -fdata-sections -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized -Wno-clobbered -Wno-strict-overflow $(call cc-option,$(-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-frename-registers,-frerun-cse-after-loop,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast))
+    VANIR_TARGET_THUMB_FLAGS := -DNDEBUG -pipe -fno-tree-vectorize -fno-inline-functions -fno-unswitch-loops -fivopts -ffunction-sections -fdata-sections -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized -Wno-clobbered -Wno-strict-overflow $(call cc-option,$(-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-frename-registers,-frerun-cse-after-loop,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast))
 endif
+
+# Additional GCC-specific arm cflags
+ifeq ($(ADDITIONAL_TARGET_GLOBAL_OPT),true)
+    VANIR_TARGET_GLOBAL_FLAGS := -O3 -DNDEBUG -pipe -fivopts -ffunction-sections -fdata-sections -funswitch-loops -fomit-frame-pointer -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized $(call cpp-option,$(-fira-loop-pressure,-fforce-addr,-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast))
+endif
+
+# Additional GCC-specific thumb cflags
+ifeq ($(ADDITIONAL_TARGET_RELEASE_OPT),true)
+    VANIR_TARGET_RELEASE_FLAGS := -O3 -pipe -fno-strict-aliasing -fivopts -ffunction-sections -fdata-sections -funswitch-loops -fomit-frame-pointer -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized $(call cc-option,$(-fira-loop-pressure,-fforce-addr,-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast))
+endif
+
 
 # Additional clang-specific cflags
 ifeq ($(USE_EXTRA_CLANG_FLAGS),true)
@@ -107,6 +124,14 @@ ifeq ($(USE_EXTRA_CLANG_FLAGS),true)
     VANIR_CLANG_CONFIG_EXTRA_CFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option
     VANIR_CLANG_CONFIG_EXTRA_CPPFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option -D__compiler_offsetof=__builtin_offsetof
     VANIR_CLANG_CONFIG_EXTRA_LDFLAGS :=
+endif
+
+# Additional global flags
+ifeq ($(USE_EXTRA_GLOBAL_FLAGS),true)
+    VANIR_GLOBAL_CFLAGS := -O3 -DNDEBUG -pipe -fivopts -ffunction-sections -fdata-sections -funswitch-loops -fomit-frame-pointer -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized $(call cc-option,$(-fira-loop-pressure,-fforce-addr,-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast))
+    VANIR_RELEASE_CFLAGS := -O3 -DNDEBUG -pipe -fivopts -ffunction-sections -fdata-sections -funswitch-loops -fomit-frame-pointer -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized $(call cc-option,$(-fira-loop-pressure,-fforce-addr,-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast))
+    VANIR_GLOBAL_CPPFLAGS := -O3 -DNDEBUG -pipe -fivopts -ffunction-sections -fdata-sections -funswitch-loops -fomit-frame-pointer -ftracer -Wno-unused-parameter -Wno-unused-but-set-variable -Wno-maybe-uninitialized $(call cpp-option,$(-fira-loop-pressure,-fforce-addr,-funsafe-loop-optimizations,-funroll-loops,-ftree-loop-distribution,-fsection-anchors,-ftree-loop-im,-ftree-loop-ivcanon,-ffunction-sections,-fgcse-las,-fgcse-sm,-fweb,-ffp-contract=fast))
+    VANIR_GLOBAL_LDFLAGS := -Wl,-O1 -Wl,--as-needed -Wl,--relax -Wl,--sort-common -Wl,--gc-sections
 endif
 
 # variables as exported to other makefiles
