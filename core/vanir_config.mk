@@ -32,6 +32,7 @@
 # FSTRICT_ALIASING_WARNING_LEVEL := 0-3 for what is considered an aliasing violation
 
 # SET GLOBAL CONFIGURATION HERE:
+USE_O3_OPTIMIZATIONS        ?= true
 MAXIMUM_OVERDRIVE           ?= true
 NO_DEBUG_SYMBOL_FLAGS       ?= true
 NO_DEBUG_FRAME_POINTERS     ?= true
@@ -49,6 +50,7 @@ endif
 
 # Respect BONE_STOCK: strictly enforce AOSP defaults.
 ifeq ($(BONE_STOCK),true)
+  USE_O3_OPTIMIZATIONS    :=
   MAXIUMUM_OVERDRIVE      :=
   NO_DEBUG_SYMBOL_FLAGS   :=
   USE_GRAPHITE            :=
@@ -100,7 +102,7 @@ endif
 # Additional clang-specific cflags
 ifeq ($(USE_EXTRA_CLANG_FLAGS),true)
     VANIR_CLANG_CONFIG_EXTRA_ASFLAGS :=
-    VANIR_CLANG_CONFIG_EXTRA_CFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option -D__compiler_offsetof=__builtin_offsetof
+    VANIR_CLANG_CONFIG_EXTRA_CFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option
     VANIR_CLANG_CONFIG_EXTRA_CPPFLAGS := -O3 -Qunused-arguments -Wno-unknown-warning-option -D__compiler_offsetof=__builtin_offsetof
     VANIR_CLANG_CONFIG_EXTRA_LDFLAGS :=
 endif

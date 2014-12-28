@@ -13,6 +13,10 @@
 # limitations under the License.
 #
 
+#Vanir Config
+include $(BUILD_SYSTEM)/vanir_config.mk
+
+# Force disable some modules that are not compatible with strict flags
 LOCAL_DISABLE_STRICT := \
 	libc_bionic \
 	libc_dns \
