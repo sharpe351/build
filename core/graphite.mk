@@ -20,10 +20,14 @@ include $(BUILD_SYSTEM)/vanir_config.mk
 LOCAL_DISABLE_GRAPHITE := \
 	libbusybox \
 	libc \
+	mdnsd \
+	bluetooth.default \
 	libhwui \
+	libstagefright_amrnb_common \
 	libunwind \
 	dnsmasq \
 	libFFTEm \
+	libart-compiler \
 	libicui18n \
 	libskia \
 	libvpx \
@@ -32,6 +36,16 @@ LOCAL_DISABLE_GRAPHITE := \
 	libart \
 	libstagefright_amrwbenc \
 	libpdfium \
+	libjavacrypto \
+	libstagefright_amrnbenc \
+	libstagefright_amrnbdec \
+	libstagefright_amrwbdec \
+	libstagefright_avcenc \
+	libstagefright_m4vh263dec \
+	libFraunhoferAAC \
+	libcrypto_static \
+	libicuuc \
+	libstagefright_m4vh263enc \
 	libpdfiumcore
 
 ifneq (1,$(words $(filter $(LOCAL_DISABLE_GRAPHITE), $(LOCAL_MODULE))))

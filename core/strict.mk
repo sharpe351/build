@@ -63,12 +63,14 @@ LOCAL_DISABLE_STRICT := \
 	libutils \
 	libandroidfw \
 	dnsmasq \
+	gatt_testtool \
 	static_busybox \
 	content_content_renderer_gyp \
 	third_party_WebKit_Source_modules_modules_gyp \
 	third_party_WebKit_Source_platform_blink_platform_gyp \
 	third_party_WebKit_Source_core_webcore_remaining_gyp \
 	third_party_angle_src_translator_lib_gyp \
+	camera.msm8084 \
 	third_party_WebKit_Source_core_webcore_generated_gyp
 
 ifneq (1,$(words $(filter $(LOCAL_DISABLE_STRICT), $(LOCAL_MODULE))))
