@@ -18,7 +18,11 @@ include $(BUILD_SYSTEM)/vanir_config.mk
 
 # Force disable some modules that are not compatible with graphite flags
 LOCAL_DISABLE_GRAPHITE := \
+	libbusybox \
+	libc \
+	libhwui \
 	libunwind \
+	dnsmasq \
 	libFFTEm \
 	libicui18n \
 	libskia \
@@ -33,18 +37,18 @@ LOCAL_DISABLE_GRAPHITE := \
 ifneq (1,$(words $(filter $(LOCAL_DISABLE_GRAPHITE), $(LOCAL_MODULE))))
 ifdef LOCAL_CONLYFLAGS
 LOCAL_CONLYFLAGS += \
-    $(GRAPHITE_FLAGS)
+	$(GRAPHITE_FLAGS)
 else
 LOCAL_CONLYFLAGS := \
-    $(GRAPHITE_FLAGS)
+	$(GRAPHITE_FLAGS)
 endif
 
 ifdef LOCAL_CPPFLAGS
 LOCAL_CPPFLAGS += \
-    $(GRAPHITE_FLAGS)
+	$(GRAPHITE_FLAGS)
 else
 LOCAL_CPPFLAGS := \
-    $(GRAPHITE_FLAGS)
+	$(GRAPHITE_FLAGS)
 endif
 endif
 
