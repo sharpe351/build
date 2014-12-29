@@ -32,14 +32,15 @@
 # FSTRICT_ALIASING_WARNING_LEVEL := 0-3 for what is considered an aliasing violation
 
 # SET GLOBAL CONFIGURATION HERE:
-USE_HOST_4_8                   ?=
-USE_O3_OPTIMIZATIONS           ?= true
 MAXIMUM_OVERDRIVE              ?= true
 NO_DEBUG_SYMBOL_FLAGS          ?= true
 NO_DEBUG_FRAME_POINTERS        ?= true
 USE_GRAPHITE                   ?= true
 USE_FSTRICT_FLAGS              ?= true
 USE_BINARY_FLAGS               ?=
+USE_HOST_4_8                   ?=
+USE_MODULAR_O3                 ?= true
+USE_O3_OPTIMIZATIONS           ?= true
 USE_EXTRA_CLANG_FLAGS          ?= true
 ADDITIONAL_TARGET_ARM_OPT      ?= true
 ADDITIONAL_TARGET_THUMB_OPT    ?= true
@@ -54,6 +55,7 @@ endif
 
 # Respect BONE_STOCK: strictly enforce AOSP defaults.
 ifeq ($(BONE_STOCK),true)
+  USE_MODULAR_O3                 :=
   USE_HOST_4_8                   :=
   USE_O3_OPTIMIZATIONS           :=
   MAXIUMUM_OVERDRIVE             :=
