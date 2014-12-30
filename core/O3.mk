@@ -20,6 +20,7 @@ LOCAL_DISABLE_O3 := \
 	bluetooth.default \
 	libstagefright_webm \
 	libjavacore \
+	camera.msm8084 \
 	net_net_gyp \
 	content_content_renderer_gyp \
 	third_party_WebKit_Source_modules_modules_gyp \

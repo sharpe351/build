@@ -18,6 +18,7 @@ include $(BUILD_SYSTEM)/vanir_config.mk
 
 # Force disable some modules that are not compatible with strict flags
 LOCAL_DISABLE_STRICT := \
+	camera.msm8084 \
 	libc_bionic \
 	libc_dns \
 	libc_tzcode \
