@@ -17,6 +17,7 @@ LOCAL_DISABLE_KRAIT := \
 	libc_dns \
 	libc_tzcode \
 	libc_aeabi \
+	libc_bionic \
 	bluetooth.default
 
 ifneq (1,$(words $(filter $(LOCAL_DISABLE_KRAIT), $(LOCAL_MODULE))))
