@@ -35,18 +35,18 @@
 MAXIMUM_OVERDRIVE              ?= true
 NO_DEBUG_SYMBOL_FLAGS          ?= true
 NO_DEBUG_FRAME_POINTERS        ?= true
-USE_GRAPHITE                   ?=
-USE_FSTRICT_FLAGS              ?=
-USE_BINARY_FLAGS               ?=
-USE_HOST_4_8                   ?=
-USE_MODULAR_O3                 ?=
-USE_O3_OPTIMIZATIONS           ?=
-USE_EXTRA_CLANG_FLAGS          ?=
-ADDITIONAL_TARGET_ARM_OPT      ?=
-ADDITIONAL_TARGET_THUMB_OPT    ?=
-ADDITIONAL_TARGET_GLOBAL_OPT   ?=
-ADDITIONAL_TARGET_RELEASE_OPT  ?=
-USE_EXTRA_GLOBAL_FLAGS         ?=
+USE_GRAPHITE                   ?= true
+USE_FSTRICT_FLAGS              ?= true
+USE_BINARY_FLAGS               ?= true
+USE_HOST_4_8                   ?= true
+USE_MODULAR_O3                 ?= true
+USE_O3_OPTIMIZATIONS           ?= true
+USE_EXTRA_CLANG_FLAGS          ?= true
+ADDITIONAL_TARGET_ARM_OPT      ?= true
+ADDITIONAL_TARGET_THUMB_OPT    ?= true
+ADDITIONAL_TARGET_GLOBAL_OPT   ?= true
+ADDITIONAL_TARGET_RELEASE_OPT  ?= true
+USE_EXTRA_GLOBAL_FLAGS         ?= true
 FSTRICT_ALIASING_WARNING_LEVEL ?= 2
 
 ifeq ($(FSTRICT_ALIASING_WARNING_LEVEL),)
