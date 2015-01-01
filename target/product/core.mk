@@ -20,6 +20,7 @@
 # core_minimal.mk instead.
 
 PRODUCT_PACKAGES += \
+    Browser \
     Calculator \
     CalendarProvider \
     CaptivePortalLogin \
