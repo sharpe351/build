@@ -17,7 +17,10 @@ LOCAL_DISABLE_KRAIT := \
 	libc_dns \
 	libc_tzcode \
 	libc_aeabi \
-	bluetooth.default
+	bluetooth.default \
+	libwebviewchromium \
+	libwebviewchromium_loader \
+	libwebviewchromium_plat_support
 
 ifneq (1,$(words $(filter $(LOCAL_DISABLE_KRAIT), $(LOCAL_MODULE))))
 ifndef LOCAL_CONLYFLAGS
