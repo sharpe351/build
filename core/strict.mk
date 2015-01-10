@@ -63,6 +63,7 @@ LOCAL_DISABLE_STRICT := \
 	libstlport \
 	libutils \
 	libandroidfw \
+	libOmxVenc \
 	dnsmasq \
 	gatt_testtool \
 	static_busybox \
