@@ -1679,6 +1679,7 @@ endif
 #   setting a rule for accepting kernel as a variable with mka
 .PHONY: kernel
 kernel:
+<<<<<<< HEAD
 		clear
 		@echo ""
 		@echo "Running kernel tool in $(TOPDIR)build/tools/makekernel.sh"
@@ -1699,6 +1700,8 @@ endif
 #   setting a rule for accepting kernel as a variable with mka
 .PHONY: kernel
 kernel:
+=======
+>>>>>>> 7d0e95e... BUILD: add rule kernel to create flashable zip of TARGET_PRODUCT kernel
 	clear
 	@echo ""
 	@echo "Running kernel tool in $(TOPDIR)build/tools/makekernel.sh"
@@ -1706,6 +1709,9 @@ kernel:
 	@echo ""
 	$(hide) . $(TOPDIR)build/tools/makekernel.sh "$(TARGET_DEVICE$)" "$(KERNEL_TOOLCHAIN)" "$(TARGET_KERNEL_SOURCE)" "$(TARGET_KERNEL_CONFIG)"
 ###################################################################
+<<<<<<< HEAD
+>>>>>>> 7d0e95e... BUILD: add rule kernel to create flashable zip of TARGET_PRODUCT kernel
+=======
 >>>>>>> 7d0e95e... BUILD: add rule kernel to create flashable zip of TARGET_PRODUCT kernel
 
 ifeq ($(USE_PREBUILT_CHROMIUM),1)
