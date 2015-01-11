@@ -1680,6 +1680,7 @@ endif
 .PHONY: kernel
 kernel:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		clear
 		@echo ""
 		@echo "Running kernel tool in $(TOPDIR)build/tools/makekernel.sh"
@@ -1702,6 +1703,8 @@ endif
 kernel:
 =======
 >>>>>>> 7d0e95e... BUILD: add rule kernel to create flashable zip of TARGET_PRODUCT kernel
+=======
+>>>>>>> 7d0e95e... BUILD: add rule kernel to create flashable zip of TARGET_PRODUCT kernel
 	clear
 	@echo ""
 	@echo "Running kernel tool in $(TOPDIR)build/tools/makekernel.sh"
@@ -1710,6 +1713,9 @@ kernel:
 	$(hide) . $(TOPDIR)build/tools/makekernel.sh "$(TARGET_DEVICE$)" "$(KERNEL_TOOLCHAIN)" "$(TARGET_KERNEL_SOURCE)" "$(TARGET_KERNEL_CONFIG)"
 ###################################################################
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 7d0e95e... BUILD: add rule kernel to create flashable zip of TARGET_PRODUCT kernel
+=======
 >>>>>>> 7d0e95e... BUILD: add rule kernel to create flashable zip of TARGET_PRODUCT kernel
 =======
 >>>>>>> 7d0e95e... BUILD: add rule kernel to create flashable zip of TARGET_PRODUCT kernel
