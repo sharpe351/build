@@ -1687,7 +1687,6 @@ kernel:
 		$(hide) . $(TOPDIR)build/tools/makekernel.sh "$(TARGET_DEVICE$)" "$(KERNEL_TOOLCHAIN)" "$(TARGET_KERNEL_SOURCE)" "$(TARGET_KERNEL_CONFIG)"
 ###################################################################
 
-<<<<<<< HEAD
 ifeq ($(CHANGELOG),true)
 # Generate changelog
 	@echo -e ${CL_GRN}"Generating Changelog"${CL_RST}
