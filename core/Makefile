@@ -1675,12 +1675,38 @@ else
 	$(hide) ./vendor/$(DHO_VENDOR)/tools/squisher $(SQUISHER_ARGS)
 endif
 
+###################################################################
+#   setting a rule for accepting kernel as a variable with mka
+.PHONY: kernel
+kernel:
+		clear
+		@echo ""
+		@echo "Running kernel tool in $(TOPDIR)build/tools/makekernel.sh"
+		@echo "Building kernel for target device: $(TARGET_DEVICE)..."
+		@echo ""
+		$(hide) . $(TOPDIR)build/tools/makekernel.sh "$(TARGET_DEVICE$)" "$(KERNEL_TOOLCHAIN)" "$(TARGET_KERNEL_SOURCE)" "$(TARGET_KERNEL_CONFIG)"
+###################################################################
+
+<<<<<<< HEAD
 ifeq ($(CHANGELOG),true)
 # Generate changelog
 	@echo -e ${CL_GRN}"Generating Changelog"${CL_RST}
 	$(hide) ./vendor/pa/utils/changelog.sh
 	$(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/$(TARGET_PRODUCT)-$(ROM_VERSION).txt
 endif
+=======
+###################################################################
+#   setting a rule for accepting kernel as a variable with mka
+.PHONY: kernel
+kernel:
+	clear
+	@echo ""
+	@echo "Running kernel tool in $(TOPDIR)build/tools/makekernel.sh"
+	@echo "Building kernel for target device: $(TARGET_DEVICE)..."
+	@echo ""
+	$(hide) . $(TOPDIR)build/tools/makekernel.sh "$(TARGET_DEVICE$)" "$(KERNEL_TOOLCHAIN)" "$(TARGET_KERNEL_SOURCE)" "$(TARGET_KERNEL_CONFIG)"
+###################################################################
+>>>>>>> 7d0e95e... BUILD: add rule kernel to create flashable zip of TARGET_PRODUCT kernel
 
 ifeq ($(USE_PREBUILT_CHROMIUM),1)
 ifneq ($(PRODUCT_PREBUILT_WEBVIEWCHROMIUM),yes)
