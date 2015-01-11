@@ -1679,8 +1679,6 @@ endif
 #   setting a rule for accepting kernel as a variable with mka
 .PHONY: kernel
 kernel:
-<<<<<<< HEAD
-<<<<<<< HEAD
 		clear
 		@echo ""
 		@echo "Running kernel tool in $(TOPDIR)build/tools/makekernel.sh"
