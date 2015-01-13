@@ -187,7 +187,7 @@ function setpaths()
         arm)
             # Legacy toolchain configuration used for ARM kernel compilation
             toolchaindir=arm/arm-linux-androideabi-$targetgccversion/bin
-            targetgccversionother=$(get_build_var TARGET_GCC_VERSION_OTHER)
+            targetgccversionother=$(get_build_var TARGET_GCC_VERSION)
             export TARGET_GCC_VERSION_OTHER=$targetgccversionother
             if [ "$TARGET_ARM_UNIFIED_TOOLCHAIN" = "true" ]; then
                 # Some arm-linux-androideabi toolchains include the arm-eabi toolchain
