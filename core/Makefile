@@ -1534,6 +1534,7 @@ endif
 	@# build them.
 	$(hide) mkdir -p $(zip_root)/META
 	$(hide) $(ACP) $(APKCERTS_FILE) $(zip_root)/META/apkcerts.txt
+	$(ANDROID_BUILD_TOP)/vendor/vanir/tools/earlysquisher $(zip_root)/SYSTEM
 	$(hide) if test -e $(tool_extensions)/releasetools.py; then $(ACP) $(tool_extensions)/releasetools.py $(zip_root)/META/; fi
 	$(hide)	echo "$(PRODUCT_OTA_PUBLIC_KEYS)" > $(zip_root)/META/otakeys.txt
 	$(hide) echo "recovery_api_version=$(PRIVATE_RECOVERY_API_VERSION)" > $(zip_root)/META/misc_info.txt
@@ -1681,6 +1682,18 @@ ifeq ($(CHANGELOG),true)
 	$(hide) ./vendor/pa/utils/changelog.sh
 	$(hide) mv $(PRODUCT_OUT)/Changelog.txt $(PRODUCT_OUT)/$(TARGET_PRODUCT)-$(ROM_VERSION).txt
 endif
+
+###################################################################
+#   setting a rule for accepting kernel as a variable with mka
+.PHONY: kernel
+kernel:
+	clear
+	@echo ""
+	@echo "Running kernel tool in $(TOPDIR)build/tools/makekernel.sh"
+	@echo "Building kernel for target device: $(TARGET_DEVICE)..."
+	@echo ""
+	$(hide) . $(TOPDIR)build/tools/makekernel.sh "$(TARGET_DEVICE$)" "$(KERNEL_TOOLCHAIN)" "$(TARGET_KERNEL_SOURCE)" "$(TARGET_KERNEL_CONFIG)"
+###################################################################
 
 ifeq ($(USE_PREBUILT_CHROMIUM),1)
 ifneq ($(PRODUCT_PREBUILT_WEBVIEWCHROMIUM),yes)
